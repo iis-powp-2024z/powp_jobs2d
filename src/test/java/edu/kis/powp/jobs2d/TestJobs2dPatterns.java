@@ -5,10 +5,11 @@ import java.awt.event.ActionEvent;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import edu.kis.legacy.drawer.panel.DrawPanelController;
 import edu.kis.legacy.drawer.shape.LineFactory;
 import edu.kis.powp.appbase.Application;
 import edu.kis.powp.jobs2d.drivers.DriverManager;
-import edu.kis.powp.jobs2d.drivers.adapter.DrawPanelControllerAdapter;
+import edu.kis.powp.jobs2d.drivers.adapter.DrawPanelControllerDriverAdapter;
 import edu.kis.powp.jobs2d.drivers.adapter.LineDrawerAdapter;
 import edu.kis.powp.jobs2d.events.SelectScribbleFigureOptionListener;
 import edu.kis.powp.jobs2d.events.SelectSquareFigureOptionListener;
@@ -39,10 +40,12 @@ public class TestJobs2dPatterns {
 		DriverFeature.addDriver("Logger Driver", loggerDriver);
 		DriverFeature.getDriverManager().setCurrentDriver(loggerDriver);
 
-		Job2dDriver testDriver = new DrawPanelControllerAdapter(DrawerFeature.getDrawerController());
+		DrawPanelController controller = DrawerFeature.getDrawerController();
+
+		Job2dDriver testDriver = new DrawPanelControllerDriverAdapter(controller);
 		DriverFeature.addDriver("DrawPanel Driver", testDriver);
 
-		Job2dDriver specialLineDriver = new LineDrawerAdapter(DrawerFeature.getDrawerController(), LineFactory.getSpecialLine());
+		Job2dDriver specialLineDriver = new LineDrawerAdapter(controller, LineFactory.getSpecialLine());
 		DriverFeature.addDriver("SpecialLine Driver", specialLineDriver);
 
 		DriverFeature.updateDriverInfo();

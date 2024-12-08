@@ -14,6 +14,7 @@ import edu.kis.powp.jobs2d.drivers.DriverManager;
 import edu.kis.powp.jobs2d.drivers.adapter.DrawPanelControllerDriverAdapter;
 import edu.kis.powp.jobs2d.drivers.adapter.LineDrawerAdapter;
 import edu.kis.powp.jobs2d.events.SelectScribbleFigureOptionListener;
+import edu.kis.powp.jobs2d.events.SelectEnvelopeFigureOptionListener;
 import edu.kis.powp.jobs2d.events.SelectSquareFigureOptionListener;
 import edu.kis.powp.jobs2d.features.DrawerFeature;
 import edu.kis.powp.jobs2d.features.DriverFeature;
@@ -31,6 +32,7 @@ public class TestJobs2dPatterns {
 		DriverManager driverManager = DriverFeature.getDriverManager();
 		application.addTest("Figure Joe 1", new SelectSquareFigureOptionListener(driverManager));
 		application.addTest("Figure Joe 2", new SelectScribbleFigureOptionListener(driverManager));
+		application.addTest("Figure Jane 1", new SelectEnvelopeFigureOptionListener(driverManager));
 	}
 
 	/**

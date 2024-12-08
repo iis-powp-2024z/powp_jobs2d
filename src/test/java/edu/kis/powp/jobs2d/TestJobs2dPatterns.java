@@ -6,6 +6,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import edu.kis.powp.appbase.Application;
+import edu.kis.powp.jobs2d.drivers.DriverManager;
 import edu.kis.powp.jobs2d.drivers.adapter.DrawPanelControllerAdapter;
 import edu.kis.powp.jobs2d.events.SelectScribbleFigureOptionListener;
 import edu.kis.powp.jobs2d.events.SelectSquareFigureOptionListener;
@@ -21,14 +22,9 @@ public class TestJobs2dPatterns {
 	 * @param application Application context.
 	 */
 	private static void setupPresetTests(Application application) {
-		SelectSquareFigureOptionListener selectSquareFigureOptionListener = new SelectSquareFigureOptionListener(
-				DriverFeature.getDriverManager());
-
-		SelectScribbleFigureOptionListener selectScribbleFigureOptionListener = new SelectScribbleFigureOptionListener(
-				DriverFeature.getDriverManager());
-
-		application.addTest("Figure Joe 1", selectSquareFigureOptionListener);
-		application.addTest("Figure Joe 2", selectScribbleFigureOptionListener);
+		DriverManager driverManager = DriverFeature.getDriverManager();
+		application.addTest("Figure Joe 1", new SelectSquareFigureOptionListener(driverManager));
+		application.addTest("Figure Joe 2", new SelectScribbleFigureOptionListener(driverManager));
 	}
 
 	/**

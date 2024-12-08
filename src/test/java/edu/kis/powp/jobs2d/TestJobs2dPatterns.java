@@ -1,18 +1,24 @@
 package edu.kis.powp.jobs2d;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import edu.kis.legacy.drawer.panel.DefaultDrawerFrame;
 import edu.kis.legacy.drawer.panel.DrawPanelController;
+import edu.kis.legacy.drawer.shape.ILine;
+import edu.kis.legacy.drawer.shape.LineFactory;
 import edu.kis.powp.appbase.Application;
-import edu.kis.powp.jobs2d.drivers.adapter.MyAdapter;
-import edu.kis.powp.jobs2d.events.SelectChangeVisibleOptionListener;
-import edu.kis.powp.jobs2d.events.SelectTestFigureOptionListener;
+import edu.kis.powp.jobs2d.drivers.DriverManager;
+import edu.kis.powp.jobs2d.drivers.adapter.DrawPanelControllerDriverAdapter;
+import edu.kis.powp.jobs2d.drivers.adapter.LineDrawerAdapter;
+import edu.kis.powp.jobs2d.events.SelectScribbleFigureOptionListener;
+import edu.kis.powp.jobs2d.events.SelectEnvelopeFigureOptionListener;
+import edu.kis.powp.jobs2d.events.SelectSquareFigureOptionListener;
 import edu.kis.powp.jobs2d.features.DrawerFeature;
 import edu.kis.powp.jobs2d.features.DriverFeature;
+import edu.kis.powp.jobs2d.lines.decorators.LineColorDecorator;
 
 public class TestJobs2dPatterns {
 	private final static Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
@@ -23,10 +29,10 @@ public class TestJobs2dPatterns {
 	 * @param application Application context.
 	 */
 	private static void setupPresetTests(Application application) {
-		SelectTestFigureOptionListener selectTestFigureOptionListener = new SelectTestFigureOptionListener(
-				DriverFeature.getDriverManager());
-
-		application.addTest("Figure Joe 1", selectTestFigureOptionListener);
+		DriverManager driverManager = DriverFeature.getDriverManager();
+		application.addTest("Figure Joe 1", new SelectSquareFigureOptionListener(driverManager));
+		application.addTest("Figure Joe 2", new SelectScribbleFigureOptionListener(driverManager));
+		application.addTest("Figure Jane 1", new SelectEnvelopeFigureOptionListener(driverManager));
 	}
 
 	/**
@@ -39,22 +45,20 @@ public class TestJobs2dPatterns {
 		DriverFeature.addDriver("Logger Driver", loggerDriver);
 		DriverFeature.getDriverManager().setCurrentDriver(loggerDriver);
 
-		Job2dDriver testDriver = new MyAdapter();
-		DriverFeature.addDriver("Buggy Simulator", testDriver);
+		DrawPanelController controller = DrawerFeature.getDrawerController();
+
+		Job2dDriver testDriver = new DrawPanelControllerDriverAdapter(controller);
+		DriverFeature.addDriver("DrawPanel Driver", testDriver);
+
+		ILine specialLine = LineFactory.getSpecialLine();
+		Job2dDriver specialLineDriver = new LineDrawerAdapter(controller, specialLine);
+		DriverFeature.addDriver("SpecialLine Driver", specialLineDriver);
+
+		ILine specialRedLine = new LineColorDecorator(specialLine, Color.RED);
+		Job2dDriver specialRedLineDriver = new LineDrawerAdapter(controller, specialRedLine);
+		DriverFeature.addDriver("SpecialRedLine Driver", specialRedLineDriver);
 
 		DriverFeature.updateDriverInfo();
-	}
-
-	/**
-	 * Auxiliary routines to enable using Buggy Simulator.
-	 * 
-	 * @param application Application context.
-	 */
-	private static void setupDefaultDrawerVisibilityManagement(Application application) {
-		DefaultDrawerFrame defaultDrawerWindow = DefaultDrawerFrame.getDefaultDrawerFrame();
-		application.addComponentMenuElementWithCheckBox(DrawPanelController.class, "Default Drawer Visibility",
-				new SelectChangeVisibleOptionListener(defaultDrawerWindow), true);
-		defaultDrawerWindow.setVisible(true);
 	}
 
 	/**
@@ -83,7 +87,6 @@ public class TestJobs2dPatterns {
 			public void run() {
 				Application app = new Application("2d jobs Visio");
 				DrawerFeature.setupDrawerPlugin(app);
-				setupDefaultDrawerVisibilityManagement(app);
 
 				DriverFeature.setupDriverPlugin(app);
 				setupDrivers(app);

@@ -1,11 +1,13 @@
 package edu.kis.powp.jobs2d;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import edu.kis.legacy.drawer.panel.DrawPanelController;
+import edu.kis.legacy.drawer.shape.ILine;
 import edu.kis.legacy.drawer.shape.LineFactory;
 import edu.kis.powp.appbase.Application;
 import edu.kis.powp.jobs2d.drivers.DriverManager;
@@ -15,6 +17,7 @@ import edu.kis.powp.jobs2d.events.SelectScribbleFigureOptionListener;
 import edu.kis.powp.jobs2d.events.SelectSquareFigureOptionListener;
 import edu.kis.powp.jobs2d.features.DrawerFeature;
 import edu.kis.powp.jobs2d.features.DriverFeature;
+import edu.kis.powp.jobs2d.lines.decorators.LineColorDecorator;
 
 public class TestJobs2dPatterns {
 	private final static Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
@@ -45,8 +48,13 @@ public class TestJobs2dPatterns {
 		Job2dDriver testDriver = new DrawPanelControllerDriverAdapter(controller);
 		DriverFeature.addDriver("DrawPanel Driver", testDriver);
 
-		Job2dDriver specialLineDriver = new LineDrawerAdapter(controller, LineFactory.getSpecialLine());
+		ILine specialLine = LineFactory.getSpecialLine();
+		Job2dDriver specialLineDriver = new LineDrawerAdapter(controller, specialLine);
 		DriverFeature.addDriver("SpecialLine Driver", specialLineDriver);
+
+		ILine specialRedLine = new LineColorDecorator(specialLine, Color.RED);
+		Job2dDriver specialRedLineDriver = new LineDrawerAdapter(controller, specialRedLine);
+		DriverFeature.addDriver("SpecialRedLine Driver", specialRedLineDriver);
 
 		DriverFeature.updateDriverInfo();
 	}

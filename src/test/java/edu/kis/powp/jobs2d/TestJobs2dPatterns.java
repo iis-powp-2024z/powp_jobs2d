@@ -8,6 +8,7 @@ import java.util.logging.Logger;
 import edu.kis.legacy.drawer.panel.DefaultDrawerFrame;
 import edu.kis.legacy.drawer.panel.DrawPanelController;
 import edu.kis.powp.appbase.Application;
+import edu.kis.powp.jobs2d.drivers.adapter.CustomizableLineDrawerAdapter;
 import edu.kis.powp.jobs2d.drivers.adapter.DrawerAdapter;
 import edu.kis.powp.jobs2d.drivers.adapter.LineDrawerAdapter;
 import edu.kis.powp.jobs2d.events.SelectChangeVisibleOptionListener;
@@ -46,6 +47,9 @@ public class TestJobs2dPatterns {
 
 		Job2dDriver lineDrawerAdapter = new LineDrawerAdapter();
 		DriverFeature.addDriver("Line Drawer Driver", lineDrawerAdapter);
+
+		Job2dDriver customizableLineDrawerAdapter = new CustomizableLineDrawerAdapter();
+		DriverFeature.addDriver("Customizable Drawer Driver", customizableLineDrawerAdapter);
 
 		DriverFeature.updateDriverInfo();
 	}

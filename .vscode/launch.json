@@ -1,0 +1,35 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "Job2dDriverTest",
+            "request": "launch",
+            "mainClass": "edu.kis.powp.jobs2d.Job2dDriverTest",
+            "projectName": "jobs2d"
+        },
+        {
+            "type": "java",
+            "name": "TestJobs2dPatterns",
+            "request": "launch",
+            "mainClass": "edu.kis.powp.jobs2d.TestJobs2dPatterns",
+            "projectName": "jobs2d"
+        },
+        {
+            "type": "java",
+            "name": "TestDrawer",
+            "request": "launch",
+            "mainClass": "edu.kis.powp.legacy.drawer.TestDrawer",
+            "projectName": "jobs2d"
+        }
+    ]
+}

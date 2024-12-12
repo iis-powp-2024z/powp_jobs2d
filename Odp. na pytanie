@@ -1,0 +1,6 @@
+Pytanie:
+Kiedy warto (lub trzeba) korzystać z adaptera klasy (wariant z projektu 
+stażysty)?
+
+Odpowiedź:
+Z klasy należy skorzystać, gdy klient chce się odwołać do implementacji interfejsu, uzyskując dostęp do funkcjonalności klasy, która sama w sobie z owym interfejsem jest niekompatybilna.

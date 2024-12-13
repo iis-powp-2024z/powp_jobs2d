@@ -20,9 +20,11 @@ public class SelectTestFigureOptionListener implements ActionListener {
 		switch (figure){
 			case "figure joe 1":
 				FiguresJoe.figureScript1(driverManager.getCurrentDriver());
+				break;
 
 			case "figure joe 2":
 				FiguresJoe.figureScript2(driverManager.getCurrentDriver());
+				break;
 
 		}
 	}

@@ -4,9 +4,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import edu.kis.powp.jobs2d.drivers.DriverManager;
-import edu.kis.powp.jobs2d.drivers.command.ComplexCommand;
-import edu.kis.powp.jobs2d.drivers.command.OperateToCommand;
-import edu.kis.powp.jobs2d.drivers.command.SetPositionCommand;
+import edu.kis.powp.jobs2d.drivers.command.*;
+import edu.kis.powp.jobs2d.drivers.factory.CommandFactory;
 import edu.kis.powp.jobs2d.magicpresets.FiguresJoe;
 
 public class SelectTestFigureOptionListener implements ActionListener {
@@ -30,13 +29,15 @@ public class SelectTestFigureOptionListener implements ActionListener {
                 break;
 
             case "Rectangle":
-                ComplexCommand complexCommand = new ComplexCommand();
-                complexCommand.addCommand(new SetPositionCommand(0, 0, driverManager.getCurrentDriver()));
-                complexCommand.addCommand(new OperateToCommand(0, 100, driverManager.getCurrentDriver()));
-                complexCommand.addCommand(new OperateToCommand(100, 100, driverManager.getCurrentDriver()));
-                complexCommand.addCommand(new OperateToCommand(100, 0, driverManager.getCurrentDriver()));
-                complexCommand.addCommand(new OperateToCommand(0, 0, driverManager.getCurrentDriver()));
-                complexCommand.execute();
+                DriverCommand rectangleCommand =
+                        CommandFactory.createRectangle(driverManager.getCurrentDriver(), 0, 0, 100, 100);
+                rectangleCommand.execute();
+                break;
+
+            case "Triangle":
+                DriverCommand triangleCommand =
+                        CommandFactory.createTriangle(driverManager.getCurrentDriver(), 0, 0, 100, 100);
+                triangleCommand.execute();
                 break;
 
             default:

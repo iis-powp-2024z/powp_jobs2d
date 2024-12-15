@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import edu.kis.powp.command.ComplexCommand;
+import edu.kis.powp.command.ComplexFactory;
 import edu.kis.powp.command.OperateToCommand;
 import edu.kis.powp.command.SetPositionCommand;
 import edu.kis.powp.jobs2d.drivers.DriverManager;
@@ -28,7 +29,7 @@ public class SelectTestFigureOptionListener implements ActionListener {
 				FiguresJoe.figureScript2(driverManager.getCurrentDriver());
 				break;
 
-			case "command figure joe 1":
+			case "command":
 				new SetPositionCommand(-120, -120, driverManager.getCurrentDriver()).execute();
 				new OperateToCommand(120, -120, driverManager.getCurrentDriver()).execute();
 				new OperateToCommand(120, 120, driverManager.getCurrentDriver()).execute();
@@ -39,7 +40,7 @@ public class SelectTestFigureOptionListener implements ActionListener {
 				new OperateToCommand(-120, 120, driverManager.getCurrentDriver()).execute();
 				break;
 
-			case "command complex figure joe 1":
+			case "command complex":
 				ComplexCommand complexCommand = new ComplexCommand();
 				complexCommand.add(new SetPositionCommand(-120, -120, driverManager.getCurrentDriver()));
 				complexCommand.add(new OperateToCommand(120, -120, driverManager.getCurrentDriver()));
@@ -50,6 +51,10 @@ public class SelectTestFigureOptionListener implements ActionListener {
 				complexCommand.add(new SetPositionCommand(120, -120, driverManager.getCurrentDriver()));
 				complexCommand.add(new OperateToCommand(-120, 120, driverManager.getCurrentDriver()));
 				complexCommand.execute();
+				break;
+
+			case "command complex factory square":
+				ComplexFactory.Square(driverManager.getCurrentDriver()).execute();
 				break;
 		}
 	}

@@ -30,8 +30,9 @@ public class TestJobs2dPatterns {
 
 		application.addTest("Figure Joe 1", selectTestFigureOptionListener);
 		application.addTest("Figure Joe 2", selectTestFigureOptionListener);
-		application.addTest("Command Figure Joe 1", selectTestFigureOptionListener);
-		application.addTest("Command Complex Figure Joe 1", selectTestFigureOptionListener);
+		application.addTest("Command", selectTestFigureOptionListener);
+		application.addTest("Command Complex", selectTestFigureOptionListener);
+		application.addTest("Command Complex Factory Square", selectTestFigureOptionListener);
 	}
 
 	/**

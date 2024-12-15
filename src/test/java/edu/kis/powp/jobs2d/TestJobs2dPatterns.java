@@ -16,6 +16,7 @@ import edu.kis.powp.jobs2d.features.DrawerFeature;
 import edu.kis.powp.jobs2d.features.DriverFeature;
 import edu.kis.powp.jobs2d.gui.LineSettingsWindow;
 import edu.kis.powp.jobs2d.helpers.LineSettings;
+import edu.kis.powp.jobs2d.magicpresets.FiguresJane;
 import edu.kis.powp.jobs2d.magicpresets.FiguresJoe;
 
 public class TestJobs2dPatterns {
@@ -33,6 +34,8 @@ public class TestJobs2dPatterns {
 			driverManager, driver -> FiguresJoe.figureScript1(driver)));
 		application.addTest("Figure Joe 2",  new SelectTestFigureOptionListener(
 			driverManager, driver -> FiguresJoe.figureScript2(driver)));
+		application.addTest("Figure Jane",  new SelectTestFigureOptionListener(
+			driverManager, driver -> FiguresJane.figureScript(driver)));
 	}
 
 	/**

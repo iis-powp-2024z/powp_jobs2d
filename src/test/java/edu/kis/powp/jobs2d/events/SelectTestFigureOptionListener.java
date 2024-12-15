@@ -9,6 +9,7 @@ import edu.kis.powp.command.OperateToCommand;
 import edu.kis.powp.command.SetPositionCommand;
 import edu.kis.powp.jobs2d.drivers.DriverManager;
 import edu.kis.powp.jobs2d.magicpresets.FiguresJoe;
+import edu.kis.powp.jobs2d.magicpresets.FiguresJoeDecorator;
 
 public class SelectTestFigureOptionListener implements ActionListener {
 
@@ -30,27 +31,11 @@ public class SelectTestFigureOptionListener implements ActionListener {
 				break;
 
 			case "command":
-				new SetPositionCommand(-120, -120, driverManager.getCurrentDriver()).execute();
-				new OperateToCommand(120, -120, driverManager.getCurrentDriver()).execute();
-				new OperateToCommand(120, 120, driverManager.getCurrentDriver()).execute();
-				new OperateToCommand(-120, 120, driverManager.getCurrentDriver()).execute();
-				new OperateToCommand(-120, -120, driverManager.getCurrentDriver()).execute();
-				new OperateToCommand(120, 120, driverManager.getCurrentDriver()).execute();
-				new SetPositionCommand(120, -120, driverManager.getCurrentDriver()).execute();
-				new OperateToCommand(-120, 120, driverManager.getCurrentDriver()).execute();
+				FiguresJoeDecorator.CommandSquareCrossed(driverManager.getCurrentDriver());
 				break;
 
 			case "command complex":
-				ComplexCommand complexCommand = new ComplexCommand();
-				complexCommand.add(new SetPositionCommand(-120, -120, driverManager.getCurrentDriver()));
-				complexCommand.add(new OperateToCommand(120, -120, driverManager.getCurrentDriver()));
-				complexCommand.add(new OperateToCommand(120, 120, driverManager.getCurrentDriver()));
-				complexCommand.add(new OperateToCommand(-120, 120, driverManager.getCurrentDriver()));
-				complexCommand.add(new OperateToCommand(-120, -120, driverManager.getCurrentDriver()));
-				complexCommand.add(new OperateToCommand(120, 120, driverManager.getCurrentDriver()));
-				complexCommand.add(new SetPositionCommand(120, -120, driverManager.getCurrentDriver()));
-				complexCommand.add(new OperateToCommand(-120, 120, driverManager.getCurrentDriver()));
-				complexCommand.execute();
+				FiguresJoeDecorator.ComplexCommandSquareCrossed(driverManager.getCurrentDriver());
 				break;
 
 			case "command complex factory square":

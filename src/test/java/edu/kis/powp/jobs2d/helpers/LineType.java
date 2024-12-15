@@ -15,6 +15,12 @@ public enum LineType {
     SPECIAL{
         @Override 
         public ILine getLine() { return LineFactory.getSpecialLine(); }
+    },  
+    CUSTOM{
+        @Override
+        public ILine getLine() {
+            throw new UnsupportedOperationException("Custom lines are managed externally.");
+        }
     };
     
     public abstract ILine getLine();

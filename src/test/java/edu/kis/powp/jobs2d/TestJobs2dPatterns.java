@@ -1,6 +1,6 @@
 package edu.kis.powp.jobs2d;
 
-import java.awt.EventQueue;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -11,6 +11,7 @@ import edu.kis.legacy.drawer.shape.LineFactory;
 import edu.kis.powp.appbase.Application;
 import edu.kis.powp.jobs2d.drivers.adapter.DrawPanelAdapter;
 import edu.kis.powp.jobs2d.drivers.adapter.LineDrawerAdapter;
+import edu.kis.powp.jobs2d.enums.TestFigure;
 import edu.kis.powp.jobs2d.events.SelectChangeVisibleOptionListener;
 import edu.kis.powp.jobs2d.events.SelectTestFigureOptionListener;
 import edu.kis.powp.jobs2d.features.DrawerFeature;
@@ -28,10 +29,10 @@ public class TestJobs2dPatterns {
 		SelectTestFigureOptionListener selectTestFigureOptionListener = new SelectTestFigureOptionListener(
 				DriverFeature.getDriverManager());
 
-		application.addTest("Figure Joe 1", selectTestFigureOptionListener);
-		application.addTest("Figure Joe 2", selectTestFigureOptionListener);
-		application.addTest("Rectangle", selectTestFigureOptionListener);
-		application.addTest("Triangle", selectTestFigureOptionListener);
+		application.addTest(TestFigure.FIGURE_JOE_1.toString(), selectTestFigureOptionListener);
+		application.addTest(TestFigure.FIGURE_JOE_2.toString(), selectTestFigureOptionListener);
+		application.addTest(TestFigure.RECTANGLE.toString(), selectTestFigureOptionListener);
+		application.addTest(TestFigure.TRIANGLE.toString(), selectTestFigureOptionListener);
 	}
 
 	/**

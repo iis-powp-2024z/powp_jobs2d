@@ -14,4 +14,15 @@ public class ComplexFactory {
 
         return complexCommand;
     }
+
+    public static DriverCommand Triangle(Job2dDriver driver) {
+        ComplexCommand complexCommand = new ComplexCommand();
+
+        complexCommand.add(new SetPositionCommand(-120, -120, driver));
+        complexCommand.add(new OperateToCommand(120, -120, driver));
+        complexCommand.add(new OperateToCommand(120, 120, driver));
+        complexCommand.add(new OperateToCommand(-120, -120, driver));
+
+        return complexCommand;
+    }
 }

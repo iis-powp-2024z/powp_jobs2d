@@ -56,6 +56,10 @@ public class SelectTestFigureOptionListener implements ActionListener {
 			case "command complex factory square":
 				ComplexFactory.Square(driverManager.getCurrentDriver()).execute();
 				break;
+
+			case "command complex factory triangle":
+				ComplexFactory.Triangle(driverManager.getCurrentDriver()).execute();
+				break;
 		}
 	}
 }

@@ -33,6 +33,7 @@ public class TestJobs2dPatterns {
 		application.addTest("Command", selectTestFigureOptionListener);
 		application.addTest("Command Complex", selectTestFigureOptionListener);
 		application.addTest("Command Complex Factory Square", selectTestFigureOptionListener);
+		application.addTest("Command Complex Factory Triangle", selectTestFigureOptionListener);
 	}
 
 	/**

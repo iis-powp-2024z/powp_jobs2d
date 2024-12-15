@@ -8,6 +8,7 @@ import java.util.logging.Logger;
 import edu.kis.legacy.drawer.panel.DefaultDrawerFrame;
 import edu.kis.legacy.drawer.panel.DrawPanelController;
 import edu.kis.powp.appbase.Application;
+import edu.kis.powp.enums.TestNames;
 import edu.kis.powp.jobs2d.drivers.adapter.CustomizableLineDrawerAdapter;
 import edu.kis.powp.jobs2d.drivers.adapter.DrawerAdapter;
 import edu.kis.powp.jobs2d.drivers.adapter.LineDrawerAdapter;
@@ -28,12 +29,12 @@ public class TestJobs2dPatterns {
 		SelectTestFigureOptionListener selectTestFigureOptionListener = new SelectTestFigureOptionListener(
 				DriverFeature.getDriverManager());
 
-		application.addTest("Figure Joe 1", selectTestFigureOptionListener);
-		application.addTest("Figure Joe 2", selectTestFigureOptionListener);
-		application.addTest("Command", selectTestFigureOptionListener);
-		application.addTest("Command Complex", selectTestFigureOptionListener);
-		application.addTest("Command Complex Factory Square", selectTestFigureOptionListener);
-		application.addTest("Command Complex Factory Triangle", selectTestFigureOptionListener);
+		application.addTest(TestNames.FigureJoe1, selectTestFigureOptionListener);
+		application.addTest(TestNames.FigureJoe2, selectTestFigureOptionListener);
+		application.addTest(TestNames.Command, selectTestFigureOptionListener);
+		application.addTest(TestNames.CommandComplex, selectTestFigureOptionListener);
+		application.addTest(TestNames.CommandComplexFactorySquare, selectTestFigureOptionListener);
+		application.addTest(TestNames.CommandComplexFactoryTriangle, selectTestFigureOptionListener);
 	}
 
 	/**

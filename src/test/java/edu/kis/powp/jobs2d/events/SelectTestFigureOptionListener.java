@@ -7,6 +7,7 @@ import edu.kis.powp.command.ComplexCommand;
 import edu.kis.powp.command.ComplexFactory;
 import edu.kis.powp.command.OperateToCommand;
 import edu.kis.powp.command.SetPositionCommand;
+import edu.kis.powp.enums.TestNames;
 import edu.kis.powp.jobs2d.drivers.DriverManager;
 import edu.kis.powp.jobs2d.magicpresets.FiguresJoe;
 import edu.kis.powp.jobs2d.magicpresets.FiguresJoeDecorator;
@@ -21,28 +22,28 @@ public class SelectTestFigureOptionListener implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		switch(e.getActionCommand().toLowerCase()) {
-			case "figure joe 1":
+		switch(e.getActionCommand()) {
+			case TestNames.FigureJoe1:
 				FiguresJoe.figureScript1(driverManager.getCurrentDriver());
 				break;
 
-			case "figure joe 2":
+			case TestNames.FigureJoe2:
 				FiguresJoe.figureScript2(driverManager.getCurrentDriver());
 				break;
 
-			case "command":
+			case TestNames.Command:
 				FiguresJoeDecorator.CommandSquareCrossed(driverManager.getCurrentDriver());
 				break;
 
-			case "command complex":
+			case TestNames.CommandComplex:
 				FiguresJoeDecorator.ComplexCommandSquareCrossed(driverManager.getCurrentDriver());
 				break;
 
-			case "command complex factory square":
+			case TestNames.CommandComplexFactorySquare:
 				ComplexFactory.Square(driverManager.getCurrentDriver()).execute();
 				break;
 
-			case "command complex factory triangle":
+			case TestNames.CommandComplexFactoryTriangle:
 				ComplexFactory.Triangle(driverManager.getCurrentDriver()).execute();
 				break;
 		}

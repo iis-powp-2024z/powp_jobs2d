@@ -4,18 +4,23 @@ import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
 
 import edu.kis.powp.appbase.Application;
 import edu.kis.powp.jobs2d.drivers.DriverManager;
 import edu.kis.powp.jobs2d.drivers.adapter.DrawerDriverAdapter;
+import edu.kis.powp.jobs2d.drivers.adapter.LineDrawerAdapter;
 import edu.kis.powp.jobs2d.events.SelectChangeVisibleOptionListener;
 import edu.kis.powp.jobs2d.events.SelectTestFigureOptionListener;
 import edu.kis.powp.jobs2d.features.DrawerFeature;
 import edu.kis.powp.jobs2d.features.DriverFeature;
+import edu.kis.powp.jobs2d.gui.LineSettingsWindow;
+import edu.kis.powp.jobs2d.helpers.LineSettings;
 import edu.kis.powp.jobs2d.magicpresets.FiguresJoe;
 
 public class TestJobs2dPatterns {
 	private final static Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
+	private final static LineSettings lineSettings = new LineSettings();
 
 	/**
 	 * Setup test concerning preset figures in context.
@@ -43,6 +48,9 @@ public class TestJobs2dPatterns {
 		Job2dDriver drawerDriver = new DrawerDriverAdapter(DrawerFeature.getDrawerController());
 		DriverFeature.addDriver("Drawer Driver", drawerDriver);
 
+		Job2dDriver lineDrawerAdapter = new LineDrawerAdapter(DrawerFeature.getDrawerController(), lineSettings::getLine);
+		DriverFeature.addDriver("Line drawer driver", lineDrawerAdapter);
+
 		DriverFeature.updateDriverInfo();
 	}
 
@@ -65,6 +73,19 @@ public class TestJobs2dPatterns {
 	}
 
 	/**
+	 * Setup menu for adjusting line settings.
+	 * 
+	 * @param application Application context.
+	 */
+	private static void setupLineSettings(Application application) {
+		JFrame lineSettingsWindow = new LineSettingsWindow(lineSettings);
+		lineSettingsWindow.setVisible(false);
+		application.addComponentMenu(LineDrawerAdapter.class, "Line Settings");
+		application.addComponentMenuElement(LineDrawerAdapter.class, "Open line settings",
+				new SelectChangeVisibleOptionListener(lineSettingsWindow));
+	}
+
+	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
@@ -77,6 +98,7 @@ public class TestJobs2dPatterns {
 				setupDrivers(app);
 				setupPresetTests(app);
 				setupLogger(app);
+				setupLineSettings(app);
 
 				app.setVisibility(true);
 			}
